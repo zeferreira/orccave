@@ -1,0 +1,9 @@
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\bin\Debug\netcoreapp2.1\OrcCaveCore.deps.json
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\bin\Debug\netcoreapp2.1\OrcCaveCore.dll
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\bin\Debug\netcoreapp2.1\OrcCaveCore.pdb
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\obj\Debug\netcoreapp2.1\OrcCaveCore.csprojAssemblyReference.cache
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\obj\Debug\netcoreapp2.1\OrcCaveCore.csproj.CoreCompileInputs.cache
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\obj\Debug\netcoreapp2.1\OrcCaveCore.AssemblyInfoInputs.cache
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\obj\Debug\netcoreapp2.1\OrcCaveCore.AssemblyInfo.cs
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\obj\Debug\netcoreapp2.1\OrcCaveCore.dll
+C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCaveCore\obj\Debug\netcoreapp2.1\OrcCaveCore.pdb

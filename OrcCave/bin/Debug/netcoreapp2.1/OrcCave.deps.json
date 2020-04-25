@@ -1,0 +1,87 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "242c10d201099d31bf6a5d577b4a793dd3615892"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "OrcCave/1.0.0": {
+        "dependencies": {
+          "OrcCaveCore": "1.0.0",
+          "SDL2-CS.NetCore": "2.0.8"
+        },
+        "runtime": {
+          "OrcCave.dll": {}
+        }
+      },
+      "SDL2-CS.NetCore/2.0.8": {
+        "runtime": {
+          "lib/netstandard2.0/SDL2-CS.dll": {
+            "assemblyVersion": "2.0.8.0",
+            "fileVersion": "2.0.8.0"
+          }
+        }
+      },
+      "SharpZipLib/1.2.0": {
+        "runtime": {
+          "lib/netstandard2.0/ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "1.2.0.246",
+            "fileVersion": "1.2.0.246"
+          }
+        }
+      },
+      "TiledSharp/1.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/TiledSharp.dll": {
+            "assemblyVersion": "0.15.0.0",
+            "fileVersion": "0.15.0.0"
+          }
+        }
+      },
+      "OrcCaveCore/1.0.0": {
+        "dependencies": {
+          "SDL2-CS.NetCore": "2.0.8",
+          "SharpZipLib": "1.2.0",
+          "TiledSharp": "1.0.1"
+        },
+        "runtime": {
+          "OrcCaveCore.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "OrcCave/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SDL2-CS.NetCore/2.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Nn1duzenQyZcFLkiA+hrFkOIB4+c1BbZzNyN2HqPg3+/wyaF2Yxeb8A5pbTmXoifTa3yjcURB+8CRE1GS8BpjA==",
+      "path": "sdl2-cs.netcore/2.0.8",
+      "hashPath": "sdl2-cs.netcore.2.0.8.nupkg.sha512"
+    },
+    "SharpZipLib/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zvWa/L02JHNatdtjya6Swpudb2YEHaOLHL1eRrqpjm71iGRNUNONO5adUF/9CHbSJbzhELW1UoH4NGy7n7+3bQ==",
+      "path": "sharpziplib/1.2.0",
+      "hashPath": "sharpziplib.1.2.0.nupkg.sha512"
+    },
+    "TiledSharp/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nY88Ux4Yj4aQ1QEP54KZwQ/QMrXSplGpqOxhab6SgkRminHv0PCrwZ9XBfFj0XSgy9omVFIeFrkig9ldXPKp3g==",
+      "path": "tiledsharp/1.0.1",
+      "hashPath": "tiledsharp.1.0.1.nupkg.sha512"
+    },
+    "OrcCaveCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
