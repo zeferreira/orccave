@@ -9,11 +9,9 @@ namespace OrcCave
         {
             int contentSpriteID = -1;
 
-            BasicObject imageFigSprite = new BasicObject(0, 0, 25, 40);
+            GameObject imageFigSprite = new GameObject(0, 0, 25, 40);
             CharacterBase deadKing = new CharacterBase(imageFigSprite);
             deadKing.CharacterType = EnumCharacterType.Enemy;
-
-            int frameRate = GameConfig.Instance.FrameRate;
 
             Animation MoveRightAnimation = new Animation(contentSpriteID);
 
@@ -112,11 +110,8 @@ namespace OrcCave
         {
             int tileSize = 32;
 
-            BasicObject imageFigSprite = new BasicObject(0, 0, tileSize, tileSize);
+            GameObject imageFigSprite = new GameObject(0, 0, tileSize, tileSize);
             CharacterBase currentChar = new CharacterBase(imageFigSprite);
-
-
-            int frameRate = GameConfig.Instance.FrameRate;
 
             Animation IdleAnimation = new Animation(contentSpriteID);
 

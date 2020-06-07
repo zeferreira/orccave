@@ -11,8 +11,8 @@ namespace OrcCave
         private EnumTypeMapNode type;
         public EnumTypeMapNode Type { get => type; set => type = value; }
 
-        private BasicObject _basicObject;
-        public BasicObject BasicObject { get => _basicObject; set => _basicObject = value; }
+        private GameObject _basicObject;
+        public GameObject BasicObject { get => _basicObject; set => _basicObject = value; }
 
         private MapNode _rightNode;
         public MapNode RightNode { get => _rightNode; set => _rightNode = value; }
@@ -32,10 +32,13 @@ namespace OrcCave
         private int _mapPositionY;
         public int MapPositionY { get => _mapPositionY; set => _mapPositionY = value; }
 
+        private Animation _animation;
+        public Animation Animation { get => _animation; set => _animation = value; }
 
         public MapNode() : base()
-        { }
-
+        {
+        }
+        
         public bool IsWay()
         {
             bool isWay = false;
@@ -58,6 +61,29 @@ namespace OrcCave
             }
 
             return isWay;
+        }
+
+        public void Update()
+        {
+            this.Animation.Update();
+
+            if (this.Animation.HasFinished)
+            {
+                this.Animation.Reset();
+            }
+        }
+
+        public void Draw()
+        {
+            if (this.BasicObject != null)
+            {
+                this._animation.X = this.BasicObject.X;
+                this._animation.Y = this.BasicObject.Y;
+                this._animation.W = this.BasicObject.W;
+                this._animation.H = this.BasicObject.H;
+            }
+
+            this.Animation.Draw();
         }
     }
 }

@@ -6,6 +6,8 @@ namespace OrcCave
 {
     public class Game
     {
+        int _fps;
+
         //game state
         private IGameState _gameState;
         public IGameState GameState { get => _gameState; set => _gameState = value; }
@@ -32,7 +34,6 @@ namespace OrcCave
         IQuestLoader _questLoader;
         
         private ICharacterLoader _characterLoader;
-        private IMapLoader _mapLoader;
 
         Quest _actualQuest;
         public Quest ActualQuest { get => _actualQuest; set => _actualQuest = value; }
@@ -40,9 +41,13 @@ namespace OrcCave
         Map _actualMap;
         public Map ActualMap { get => _actualMap; set => _actualMap = value; }
 
+        //for player
         CharacterBase _player;
         public CharacterBase Player { get => _player; set => _player = value; }
-
+        
+        IController _controller;
+        public IController Controller { get => _controller; set => _controller = value; }
+        
         //singleton
         private static readonly object padlock = new object();
         private static Game instance = null;
@@ -61,8 +66,6 @@ namespace OrcCave
                 }
             }
         }
-
-
 
         Game()
         {
@@ -86,6 +89,7 @@ namespace OrcCave
 
             this.GameState = new GameStatePlaying(this);
             this.GameTime = GameTime.Instance;
+            this._fps = GameConfig.Instance.FPS;
 
         }
 
@@ -105,6 +109,8 @@ namespace OrcCave
             this.Player = this._characterLoader.Load();
             this.Player.X = this.ActualMap.StartNode.BasicObject.X;
             this.Player.Y = this.ActualMap.StartNode.BasicObject.Y;
+            this.Controller = new ControllerPc();
+            this.Player.Controller = Controller;
 
             this._gameState.LoadContent();
         }
@@ -129,21 +135,36 @@ namespace OrcCave
 
         public void Run()
         {
+            int fps = this._fps;
+            int frameDelay = 1000 / fps;
+
+            uint frameTime;
+            uint framestart;
+
             if (_firstStart)
             {
                 this._gameTime.StartClock();
                 this.LoadContent();
                 this._firstStart = false;
             }
-            
+
             while (!(this._gameState is GameStateQuit))
             {
-                this.Draw();
+                framestart = SDL.SDL_GetTicks();
 
                 this.Update();
-                //too much fast
-                //Thread.Sleep(20);
+
+                this.Draw();
+
+                frameTime =  SDL.SDL_GetTicks() - framestart;
+
+                if (frameDelay > frameTime)
+                {
+                    SDL.SDL_Delay((uint)(frameDelay - frameTime));
+                }
             }
+
+            this.UnloadContent();
         }
     }
 }

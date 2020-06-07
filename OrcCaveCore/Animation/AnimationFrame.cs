@@ -58,7 +58,7 @@ namespace OrcCave
             this.H = h;
             this.W = w;
 
-            this._frameTime = GameConfig.Instance.FrameRate;
+            this._frameTime = GameConfig.Instance.DefaultAnimationFrameTime;
         }
     }
 }

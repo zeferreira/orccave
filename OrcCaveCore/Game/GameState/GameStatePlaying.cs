@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using SDL2;
 
 namespace OrcCave
@@ -25,7 +26,7 @@ namespace OrcCave
 
         }
 
-        public void Update()
+        public void Updateold()
         {
             SDL.SDL_Event e;
 
@@ -75,6 +76,31 @@ namespace OrcCave
                 }
 
             }//while
+
+            //you must change the code, don't use events, try keyborad state
+            this._gameBase.Player.AddCommand(new CharacterCommandIdle());
+            this._gameBase.Player.Update();
+            //this._gameBase.ActualQuest.Update();
+            //this._gameStatusBar.Update();
+
+        }
+
+        public void Update()
+        {
+            this._gameBase.Controller.Update();
+
+            InputState inputState = this._gameBase.Controller.GetInputState();
+
+            if (inputState.Q)
+            {
+                this._gameBase.GameState = new GameStateQuit(this._gameBase);
+            }
+            else if (inputState.P)
+            {
+                IGameState lastGameState = this._gameBase.GameState;
+                this._gameBase.GameState = new GameStatePaused(this._gameBase, lastGameState);
+            }
+            
             this._gameBase.Player.Update();
             this._gameBase.ActualQuest.Update();
             this._gameStatusBar.Update();
@@ -87,14 +113,10 @@ namespace OrcCave
             SDL.SDL_RenderClear(renderer);
 
             //draw map
-            _gameBase.ActualMap.DrawFloor();
-            _gameBase.ActualMap.DrawWalls();
-
+            _gameBase.ActualQuest.Draw();
+            
             //player layer
             _gameBase.Player.Draw();
-
-            //enemies
-            _gameBase.ActualQuest.DrawEnemies();
 
             //interfaces
             this._gameStatusBar.Draw();

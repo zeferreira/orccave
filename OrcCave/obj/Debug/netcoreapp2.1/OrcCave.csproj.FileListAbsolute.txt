@@ -12,3 +12,17 @@ C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCave\obj\Debug\netcoreapp2.1\OrcC
 C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.csproj.CopyComplete
 C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.dll
 C:\Users\Jose Ferreira\source\repos\OrcCave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.pdb
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\bin\Debug\netcoreapp2.1\OrcCave.deps.json
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\bin\Debug\netcoreapp2.1\OrcCave.runtimeconfig.json
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\bin\Debug\netcoreapp2.1\OrcCave.runtimeconfig.dev.json
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\bin\Debug\netcoreapp2.1\OrcCave.dll
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\bin\Debug\netcoreapp2.1\OrcCave.pdb
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\bin\Debug\netcoreapp2.1\OrcCaveCore.dll
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\bin\Debug\netcoreapp2.1\OrcCaveCore.pdb
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.csprojAssemblyReference.cache
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.csproj.CoreCompileInputs.cache
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.AssemblyInfoInputs.cache
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.AssemblyInfo.cs
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.csproj.CopyComplete
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.dll
+C:\Users\Jose Ferreira\Documents\GitHub\orccave\OrcCave\obj\Debug\netcoreapp2.1\OrcCave.pdb

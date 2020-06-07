@@ -765,11 +765,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jose Ferreira\\source\\repos\\OrcCave\\OrcCaveCore\\OrcCaveCore.csproj",
+      "projectUniqueName": "C:\\Users\\Jose Ferreira\\Documents\\GitHub\\orccave\\OrcCaveCore\\OrcCaveCore.csproj",
       "projectName": "OrcCaveCore",
-      "projectPath": "C:\\Users\\Jose Ferreira\\source\\repos\\OrcCave\\OrcCaveCore\\OrcCaveCore.csproj",
+      "projectPath": "C:\\Users\\Jose Ferreira\\Documents\\GitHub\\orccave\\OrcCaveCore\\OrcCaveCore.csproj",
       "packagesPath": "C:\\Users\\Jose Ferreira\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jose Ferreira\\source\\repos\\OrcCave\\OrcCaveCore\\obj\\",
+      "outputPath": "C:\\Users\\Jose Ferreira\\Documents\\GitHub\\orccave\\OrcCaveCore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

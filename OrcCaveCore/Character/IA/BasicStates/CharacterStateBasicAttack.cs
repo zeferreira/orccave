@@ -21,7 +21,6 @@ namespace OrcCave
             this._baseChar.AddCommand(new CharacterCommandBasicAttack());
 
             this._baseChar.IACharacterState = new CharacterStateWalking(_baseChar);
-
         }
     }
 }

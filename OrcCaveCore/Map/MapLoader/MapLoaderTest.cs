@@ -81,15 +81,14 @@ namespace OrcCave
             return layer;
         }
         
-        private BasicObject GetBasicObject(MapNode node)
+        private GameObject GetBasicObject(MapNode node)
         {
             int contentSpriteID = 2;
 
             int tileSize = 32;
 
-            BasicObject imageFigSprite = new BasicObject(node.MapPositionX*tileSize, node.MapPositionY * tileSize, tileSize, tileSize);
+            GameObject imageFigSprite = new GameObject(node.MapPositionX*tileSize, node.MapPositionY * tileSize, tileSize, tileSize);
 
-            int frameRate = GameConfig.Instance.FrameRate;
 
             Animation ActualAnimation = new Animation(contentSpriteID);
 

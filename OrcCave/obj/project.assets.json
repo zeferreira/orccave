@@ -784,11 +784,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jose Ferreira\\source\\repos\\OrcCave\\OrcCave\\OrcCave.csproj",
+      "projectUniqueName": "C:\\Users\\Jose Ferreira\\Documents\\GitHub\\orccave\\OrcCave\\OrcCave.csproj",
       "projectName": "OrcCave",
-      "projectPath": "C:\\Users\\Jose Ferreira\\source\\repos\\OrcCave\\OrcCave\\OrcCave.csproj",
+      "projectPath": "C:\\Users\\Jose Ferreira\\Documents\\GitHub\\orccave\\OrcCave\\OrcCave.csproj",
       "packagesPath": "C:\\Users\\Jose Ferreira\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jose Ferreira\\source\\repos\\OrcCave\\OrcCave\\obj\\",
+      "outputPath": "C:\\Users\\Jose Ferreira\\Documents\\GitHub\\orccave\\OrcCave\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -807,8 +807,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Jose Ferreira\\source\\repos\\OrcCave\\OrcCaveCore\\OrcCaveCore.csproj": {
-              "projectPath": "C:\\Users\\Jose Ferreira\\source\\repos\\OrcCave\\OrcCaveCore\\OrcCaveCore.csproj"
+            "C:\\Users\\Jose Ferreira\\Documents\\GitHub\\orccave\\OrcCaveCore\\OrcCaveCore.csproj": {
+              "projectPath": "C:\\Users\\Jose Ferreira\\Documents\\GitHub\\orccave\\OrcCaveCore\\OrcCaveCore.csproj"
             }
           }
         }

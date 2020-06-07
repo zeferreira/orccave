@@ -1,12 +1,38 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-//using SDL2;
+using SDL2;
 
 namespace OrcCave
 {
     public class Animation
     {
+        protected SDL.SDL_Rect _targetRect;
+
+        public int X
+        {
+            get { return this._targetRect.x; }
+            set { this._targetRect.x = value; }
+        }
+
+        public int Y
+        {
+            get { return this._targetRect.y; }
+            set { this._targetRect.y = value; }
+        }
+
+        public int W
+        {
+            get { return this._targetRect.w; }
+            set { this._targetRect.w = value; }
+        }
+
+        public int H
+        {
+            get { return this._targetRect.h; }
+            set { this._targetRect.h = value; }
+        }
+
         private EnumFlipAnimatonType _flipType;
         public EnumFlipAnimatonType FlipType { get => _flipType; set => _flipType = value; }
 
@@ -37,11 +63,13 @@ namespace OrcCave
         public List<AnimationFrame> Frames { get => _frames; set => _frames = value; }
 
         int _actualFrameIndex = 0;
+        public int ActualFrameIndex { get => _actualFrameIndex; set => _actualFrameIndex = value; }
+
         public AnimationFrame ActualFrame
         {
             get
             {
-                return this._frames[_actualFrameIndex];
+                return this._frames[ActualFrameIndex];
             }
         }
         
@@ -52,7 +80,7 @@ namespace OrcCave
             this.SpriteSheet = Game.Instance.SpriteSheetContentManager.GetSpriteSheet(contentSpriteSheetID);
             this._flipType = EnumFlipAnimatonType.None;
             this._hasFinished = false;
-            this._actualFrameIndex = 0;
+            this.ActualFrameIndex = 0;
             this._timeIntoAnimation = TimeSpan.Zero;
         }
 
@@ -61,22 +89,6 @@ namespace OrcCave
             this._frames.Add(frame);
             this._totalTimeAnimation += frame.FrameTime;
         }
-
-        //public AnimationFrame GetNextFrameOriginal()
-        //{
-        //    uint ticks = SDL.SDL_GetTicks();
-
-        //    _actualFrameIndex = (int)(ticks / Frames[_actualFrameIndex].FrameTime) % (int)this._frames.Count;
-
-        //    if (_actualFrameIndex == (Frames.Count - 1))
-        //    {
-        //        this._hasFinished = true;
-        //    }
-        //    else this._hasFinished = false;
-
-            
-        //    return Frames[_actualFrameIndex];
-        //}
 
         public void Update()
         {
@@ -101,7 +113,7 @@ namespace OrcCave
 
                 if ((accumulatedTime + (new TimeSpan(0, 0, 0, 0, frame.FrameTime)) >= _timeIntoAnimation))
                 {
-                    _actualFrameIndex = i;
+                    ActualFrameIndex = i;
                     break;
                 }
                 else
@@ -112,24 +124,57 @@ namespace OrcCave
 
             this._timeIntoAnimation += (actualExecutionTime - _lastExecutionTime);
 
-            if ((this._timeIntoAnimation.TotalSeconds*1000) > TotalTimeAnimation)
+            if ((this._timeIntoAnimation.TotalSeconds * 1000) > TotalTimeAnimation)
             {
                 this._hasFinished = true;
-                this._actualFrameIndex = 0;
-                this._timeIntoAnimation = TimeSpan.Zero;
+                //this._actualFrameIndex = 0;
+                //this._timeIntoAnimation = TimeSpan.Zero;
+                //this._lastExecutionTime = TimeSpan.Zero;
             }
-
-            this._lastExecutionTime = actualExecutionTime;
-#if DEBUG
-            Console.WriteLine("HasFinished:" + HasFinished);
-#endif
+            else
+            {
+                this._lastExecutionTime = actualExecutionTime;
+            }
+              
+//#if DEBUG
+//            Console.WriteLine("HasFinished:" + HasFinished);
+//#endif
         }
 
         public void Reset()
         {
             this._hasFinished = false;
-            this._actualFrameIndex = 0;
+            this.ActualFrameIndex = 0;
             this._timeIntoAnimation = TimeSpan.Zero;
+            this._lastExecutionTime = TimeSpan.Zero;
         }
+
+        public virtual void Draw()
+        {
+            IntPtr renderer = Game.Instance.Renderer;
+
+            SDL.SDL_Rect sourceFrameSheet = this.ActualFrame.SourceFrameSheetRect;
+
+            SDL.SDL_RendererFlip flip = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
+
+            switch (this.FlipType)
+            {
+                case EnumFlipAnimatonType.None:
+                    flip = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
+                    break;
+                case EnumFlipAnimatonType.Horizontal:
+                    flip = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
+                    break;
+                case EnumFlipAnimatonType.Vertical:
+                    flip = SDL.SDL_RendererFlip.SDL_FLIP_VERTICAL;
+                    break;
+
+                default:
+                    break;
+            }
+
+            SDL.SDL_RenderCopyEx(renderer, this.SpriteSheet.Texture, ref sourceFrameSheet, ref this._targetRect, 0.0, IntPtr.Zero, flip);
+        }
+
     }
 }

@@ -22,7 +22,8 @@ namespace OrcCave
             slime.X = test.ActualMap.ObjectiveNode.BasicObject.X;
             slime.Y = test.ActualMap.ObjectiveNode.BasicObject.Y;
 
-            slime.IACharacterState = new CharacterStateWalking(slime);
+            //slime.IACharacterState = new CharacterStateWalking(slime);
+            slime.Controller = new ControllerIADoNothing();
 
             test.ActualEnemyList.Add(slime);
 

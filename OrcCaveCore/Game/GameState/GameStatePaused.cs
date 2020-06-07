@@ -27,36 +27,20 @@ namespace OrcCave
 
         public void Update()
         {
-            SDL.SDL_Event e;
+            this._gameBase.Controller.Update();
 
-            while (SDL.SDL_PollEvent(out e) != 0)
+            InputState inputState = this._gameBase.Controller.GetInputState();
+
+            if (inputState.Q)
             {
-                switch (e.type)
-                {
-                    case SDL.SDL_EventType.SDL_QUIT:
-                        this._gameBase.GameState = new GameStateQuit(this._gameBase);
-                        break;
-                    case SDL.SDL_EventType.SDL_KEYDOWN:
-                        switch (e.key.keysym.sym)
-                        {
-                            case SDL.SDL_Keycode.SDLK_q:
-                                this._gameBase.GameState = new GameStateQuit(this._gameBase);
-                                break;
-                            case SDL.SDL_Keycode.SDLK_ESCAPE:
-                                this._gameBase.GameState = new GameStateQuit(this._gameBase);
-                                break;
-                            case SDL.SDL_Keycode.SDLK_p:
-                                this._gameBase.GameTime.StartClock();
-                                this._gameBase.GameState = _lastGamePlaingState;
-                                break;
-                        }
-                        break;
-                    default://first switch
-                        break;
-                }
-
-            }//while
-
+                this._gameBase.GameState = new GameStateQuit(this._gameBase);
+            }
+            else if (inputState.P)
+            {
+                this._gameBase.GameTime.StartClock();
+                this._gameBase.GameState = _lastGamePlaingState;
+            }
+                        
             //local state updates
             //this._gameBase.Player.Update();
             //this._gameBase.ActualQuest.Update();

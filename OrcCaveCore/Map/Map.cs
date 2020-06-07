@@ -35,27 +35,31 @@ namespace OrcCave
             //_floor = this._mapReader.ReadMapFromFile(this._filePath);
         }
 
-        public void DrawFloor()
+        public void Draw()
         {
+            DrawFloor();
+            DrawWalls();
+        }
+
+        public void Update()
+        {
+            foreach (var item in this.WallsLayer)
+            {
+                if (item != null)
+                {
+                    item.Update();
+                }
+            }
+
             foreach (var item in this._floor)
             {
-                if(item != null)
+                if (item != null)
                 {
-                    item.BasicObject.Draw();
+                    item.Update();
                 }
             }
         }
 
-        public void DrawWalls()
-        {
-            foreach (var item in this._walls)
-            {
-                if (item != null)
-                {
-                    item.BasicObject.Draw();
-                }
-            }
-        }
 
         public List<MapNode> GetSolutionPath(bool reverterOrdem)
         {
@@ -84,7 +88,6 @@ namespace OrcCave
             return resposta;
         }
 
-        //public abstract void Draw();
 
         #region private_methods
         private void CreateGraphFromArray(MapNode[,] map)
@@ -199,6 +202,28 @@ namespace OrcCave
             double rank = Math.Sqrt((Math.Pow(point1.MapPositionX - point2.MapPositionX, 2) + Math.Pow(point1.MapPositionY- point2.MapPositionY, 2)));
 
             return rank;
+        }
+
+        private void DrawFloor()
+        {
+            foreach (var item in this._floor)
+            {
+                if (item != null)
+                {
+                    item.Draw();
+                }
+            }
+        }
+
+        private void DrawWalls()
+        {
+            foreach (var item in this._walls)
+            {
+                if (item != null)
+                {
+                    item.Draw();
+                }
+            }
         }
         #endregion private_methods
     }

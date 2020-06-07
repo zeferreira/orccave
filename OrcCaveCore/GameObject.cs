@@ -3,8 +3,9 @@ using SDL2;
 
 namespace OrcCave
 {
-    public class BasicObject
+    public class GameObject
     {
+        //Physics section
         private int _rightVelocity;
         public int RightVelocity { get => _rightVelocity; set => _rightVelocity = value; }
 
@@ -19,12 +20,15 @@ namespace OrcCave
 
         private int _velocityIncrement;
         public int VelocityIncrement { get => _velocityIncrement; set => _velocityIncrement = value; }
+        //Physics section
 
+        //animation section
         private Animation _actualAnimation;
         public Animation ActualAnimation { get => _actualAnimation; set => _actualAnimation = value; }
 
         private AnimationFrame _actualFrame;
         public AnimationFrame ActualFrame { get => _actualFrame; set => _actualFrame = value; }
+        //animation section 
 
         protected SDL.SDL_Rect _targetRect;
 
@@ -52,7 +56,7 @@ namespace OrcCave
             set { this._targetRect.h = value; }
         }
 
-        public BasicObject(int x, int y, int w, int h)
+        public GameObject(int x, int y, int w, int h)
         {
             this._targetRect.x = x;
             this._targetRect.y = y;
@@ -60,45 +64,9 @@ namespace OrcCave
             this._targetRect.w = w;
         }
 
-        private void Update()
-        {
-            this.ActualAnimation.Update();
-        }
-
-        public virtual void Draw()
-        {
-            IntPtr renderer = Game.Instance.Renderer;
-            
-            this._actualFrame = this.ActualAnimation.ActualFrame;
-
-            SDL.SDL_Rect sourceFrameSheet = this._actualFrame.SourceFrameSheetRect;
-
-            SDL.SDL_RendererFlip flip = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
-
-            switch (this.ActualAnimation.FlipType)
-            {
-                case EnumFlipAnimatonType.None:
-                    flip = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
-                    break;
-                case EnumFlipAnimatonType.Horizontal:
-                    flip = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
-                    break;
-                case EnumFlipAnimatonType.Vertical:
-                    flip = SDL.SDL_RendererFlip.SDL_FLIP_VERTICAL;
-                    break;
-
-                default:
-                    break;
-            }
-
-            SDL.SDL_RenderCopyEx(renderer, this.ActualAnimation.SpriteSheet.Texture, ref sourceFrameSheet, ref this._targetRect, 0.0, IntPtr.Zero, flip);
-//#if DEBUG
-//            Console.WriteLine("source: " + sourceFrameSheet.w.ToString() + " - " + sourceFrameSheet.h.ToString() 
-//                + "target: " + this._targetRect.w.ToString() + " - " + this._targetRect.h.ToString());
-//#endif    
-        }
-
-        public bool IsCollision(BasicObject basicObjectTarget)
+        //can you use physics for collision?
+        //do you need a interface? yes.
+        public bool IsCollision(GameObject basicObjectTarget)
         {
             SDL.SDL_Rect source = this._targetRect;
             SDL.SDL_Rect target = basicObjectTarget._targetRect;

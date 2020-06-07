@@ -74,6 +74,7 @@ namespace OrcCave
                     }
 
                     quadranteAtual.BasicObject = GetBasicObject(quadranteAtual, input);
+                    quadranteAtual.Animation = quadranteAtual.BasicObject.ActualAnimation;
                 }
             }
 
@@ -83,15 +84,13 @@ namespace OrcCave
             return this._result;
         }
 
-        private BasicObject GetBasicObject(MapNode node, int inputType)
+        private GameObject GetBasicObject(MapNode node, int inputType)
         {
             int contentSpriteID = 2;
 
             int tileSize = 32;
 
-            BasicObject imageFigSprite = new BasicObject(node.MapPositionX * tileSize, node.MapPositionY * tileSize, tileSize, tileSize);
-
-            int frameRate = GameConfig.Instance.FrameRate;
+            GameObject imageFigSprite = new GameObject(node.MapPositionX * tileSize, node.MapPositionY * tileSize, tileSize, tileSize);
 
             Animation ActualAnimation = new Animation(contentSpriteID);
 

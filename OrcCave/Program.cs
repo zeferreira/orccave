@@ -1,7 +1,7 @@
 ﻿using System;
 using SDL2;
 using OrcCave;
-
+using System.Runtime.InteropServices;
 
 namespace ConsoleTestGuiSDL
 {
@@ -15,17 +15,18 @@ namespace ConsoleTestGuiSDL
             config.Hresolution = 480;
             config.Wresolution = 800;
             //good frame rate for Dungeon Sprite Sheet from Pita
-            config.FrameRate = 100;
+            config.DefaultAnimationFrameTime = 100;
             config.ImageFolder = @"Images\";
 
             //player move speed
-            config.MoveSpeed = 5;
-            config.ToleranceCollision = 2;
-            config.CommandQueueCapacity = 5;
+            config.MoveSpeed = 2;
+            config.ToleranceCollision = 1;
+            config.CommandQueueCapacity = 10;
 
             Game game = Game.Instance;
 
             game.Run();
         }
+
     }
 }

@@ -4,11 +4,20 @@ using System.Collections.Generic;
 
 namespace OrcCave
 {
-    public class CharacterBase : BasicObject
+    public class CharacterBase : GameObject
     {
+        //general configuration
+        GameConfig _config;
+
+        //gui
+        private CharacterStatusBar _statusBar;
+        
         //IA
         private ICharacterState _IACharacterState;
         public ICharacterState IACharacterState { get => _IACharacterState; set => _IACharacterState = value; }
+
+        IController _controller;
+        public IController Controller { get => _controller; set => _controller = value; }
 
         //basic properties
         string _name;
@@ -32,15 +41,17 @@ namespace OrcCave
         private EnumCharacterType _characterType;
         public EnumCharacterType CharacterType { get => _characterType; set => _characterType = value; }
 
-        //command
+        //command 
         private int _commandQueueCapacity;
         private Queue<ICharacterCommand> _commandQueue;
+        
         private ICharacterCommand _actualCommand;
 
         private ICharacterCommand _lastEnqueueCommand;
+        //command end
 
-        GameConfig _config;
-
+        
+        //animation system start
         Animation _moveRightAnimation;
         public Animation MoveRightAnimation { get => _moveRightAnimation; set => _moveRightAnimation = value; }
 
@@ -61,9 +72,8 @@ namespace OrcCave
 
         private Animation _takeDamageAnimation;
         public Animation TakeDamageAnimation { get => _takeDamageAnimation; set => _takeDamageAnimation = value; }
-
-
-        private CharacterStatusBar _statusBar;
+        
+        //animation system end
 
         public CharacterBase(int x, int y, int w, int h)
             :base(x,y,w,h)
@@ -82,7 +92,7 @@ namespace OrcCave
             this._statusBar = new CharacterStatusBar(this, x+10, y-10);
         }
 
-        public CharacterBase(BasicObject basicObject)
+        public CharacterBase(GameObject basicObject)
             : base(basicObject.X, basicObject.Y, basicObject.W, basicObject.H)
         {
             this._config = GameConfig.Instance;
@@ -100,33 +110,29 @@ namespace OrcCave
             this._statusBar = new CharacterStatusBar(this, basicObject.X + 10, basicObject.Y - 10);
         }
 
+
         public void AddCommand(ICharacterCommand command)
         {
-            if (this._actualCommand.HasFinished())
+            //characters life 
+            if ((this.Life > 0))
             {
-                if ((this.Life > 0) && this._commandQueue.Count < this._commandQueueCapacity)
+                if (this._actualCommand.HasFinished() || this._actualCommand.CanCancel())
                 {
-                    if (this._lastEnqueueCommand == null)
+                    if (!(this._actualCommand is CharacterCommandIdle))
                     {
-                        this._commandQueue.Enqueue(command);
-                        this._lastEnqueueCommand = command;
+                        this._actualCommand = command;
                     }
-                    //else if (!(_lastEnqueueCommand.GetType() == command.GetType() ))
-                    else if ((_lastEnqueueCommand is CharacterCommandIdle) && (command is CharacterCommandIdle) && (_commandQueue.Count > 0))
-                    { }
-                    else
+                    else if(this._actualCommand.HasFinished())
                     {
-                        //Console.WriteLine("opa!!");
-                        this._commandQueue.Enqueue(command);
-                        this._lastEnqueueCommand = command;
+                        this._actualCommand = command;
                     }
                 }
             }
         }
-        
-        public override void Draw()
+
+        public void Draw()
         {
-            base.Draw();
+            this._actualCommand.Draw();
             this._statusBar.Draw();
         }
 
@@ -138,16 +144,29 @@ namespace OrcCave
                 this._IACharacterState.Update();
             }
             
-            if (this._actualCommand.HasFinished())
+            //controlado pelo jogador
+            bool hasUserInput = this.Controller.GetInputState().HasInput();
+
+            if (hasUserInput)
             {
-                if(this._commandQueue.Count > 0)
+                if (this._actualCommand.HasFinished() || this._actualCommand.CanCancel())
                 {
-                    this._actualCommand = this._commandQueue.Dequeue();
-                    this._actualCommand.Execute(this);
+                    this._actualCommand = this.Controller.GetCommand();
                 }
             }
+            else if(this._actualCommand.HasFinished() || this._actualCommand == null)
+            {
+                this._actualCommand = new CharacterCommandIdle();
+            }
+
+            //Foggy, I may need to separate game status buttons from character command buttons
+            if (this._actualCommand == null)
+            {
+                this._actualCommand = new CharacterCommandIdle();
+            }
+
+            this._actualCommand.Update(this);
             this._statusBar.Update();
-            this.ActualAnimation.Update();
         }
     }
 }

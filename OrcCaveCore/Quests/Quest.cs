@@ -42,6 +42,8 @@ namespace OrcCave
 
         public void Update()
         {
+            this._actualMap.Update();
+
             List<CharacterBase> removed = new List<CharacterBase>();
 
             foreach (var item in this._actualEnemyList)
@@ -59,7 +61,13 @@ namespace OrcCave
             }
         }
 
-        public void DrawEnemies()
+        public void Draw()
+        {
+            DrawMap();
+            DrawEnemies();
+        }
+
+        private void DrawEnemies()
         {
             foreach (var item in this.ActualEnemyList)
             {
@@ -70,5 +78,9 @@ namespace OrcCave
             }
         }
 
+        private void DrawMap()
+        {
+            this._actualMap.Draw();
+        }
     }
 }

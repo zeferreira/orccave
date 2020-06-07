@@ -5,10 +5,9 @@ namespace OrcCave
 {
     public class GameConfig
     {
-
         private GameConfig()
         {
-
+            this.FPS = 60;
         }
 
         private static readonly object padlock = new object();
@@ -34,8 +33,11 @@ namespace OrcCave
         public int Wresolution { get => _wresolution; set => _wresolution = value; }
         public int Hresolution { get => _hresolution; set => _hresolution = value; }
 
-        private int _frameRate;
-        public int FrameRate { get => _frameRate; set => _frameRate = value; }
+        private int _defaultAnimationFrameTime;
+        public int DefaultAnimationFrameTime { get => _defaultAnimationFrameTime; set => _defaultAnimationFrameTime = value; }
+
+        private int _fps;
+        public int FPS { get => _fps; set => _fps = value; }
 
         private int _commandQueueCapacity;
         public int CommandQueueCapacity { get => _commandQueueCapacity; set => _commandQueueCapacity = value; }
